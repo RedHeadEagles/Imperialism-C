@@ -1,0 +1,857 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+#include <cmath>
+#include <fstream>
+using namespace std;
+
+int randPercent(int range);
+
+string constructionWorkerDeath();
+
+string constructionWorker();
+
+string holeDigger();
+
+string trackRemover();
+
+string Cdemolitionist();
+
+string holeDiggerDeath();
+
+string trackRemoverDeath();
+
+string CdemolitionistDeath();
+
+string pickaxerDeath();
+
+string enlist();
+
+string mountainTunnelerDeath();
+
+string firstChoice();
+
+string soldier();
+
+string navy();
+
+string navyDeath();
+
+string fieldOp();
+
+string fieldOpDeath();
+
+string support();
+
+string supportDeath();
+
+string rougeDeath();
+
+string Sdemolitionist();
+
+string SdemolitionistDeath();
+
+string sniper();
+
+int main ()
+{
+	string choice = firstChoice();
+	string death;
+	do
+	{
+		if (choice == "Construction Worker")
+		{
+			death = constructionWorker();
+			break;
+		}
+		if (choice == "Soldier")
+		{
+			death = soldier();
+			break;
+		}
+		break;
+	}while(death.empty());
+	cout << death;
+	return 0;
+}
+
+int randPercent(int range)
+{
+	srand(static_cast<unsigned int>(time(0)));
+	int randNumber1 = rand();
+	int randNumber2 = rand();
+	int randNumber3 = rand();
+	int chance = (((randNumber1 / randNumber2) ^ randNumber3) % range) + 1;
+	return chance;
+}
+
+string constructionWorkerDeath()
+{
+	string death;
+	int diseaseChance = randPercent(15);
+	if (diseaseChance == 1)
+	{
+		int disease = randPercent(4);
+		if (disease == 1)
+		{
+			death = "You died of Malaria. You should have kept those misquitoes out.";
+		}
+		else if (disease == 2)
+		{
+			death = "You died of Yellow Fever. Those bug nets don't seem so bad now, do they?";
+		}
+		else if (disease == 3)
+		{
+			death = "You died by a snake bite. Stop acting like Indianna Jones and get up.";
+		}
+		else if (disease == 4)
+		{
+			death = "You died by Rabies. You shouldn't have pet the monkey.";
+		}
+	}
+	else
+	{
+		int revoltChance = randPercent(15);
+		if (revoltChance == 1)
+		{
+			death = "You were mistaken as a officer trying to stop the Canal. You were shot on sight.";
+		}
+		
+	}
+	
+	return death;
+}
+string constructionWorker()
+{
+	string victory;
+	string choice;
+	string death = constructionWorkerDeath();
+	if (death.empty())
+	{
+		cout << "\nYou work long enough to pick your position on the team.\nHere are your options:\n";
+		cout << "Hole digger\nTrack remover\nDemolitionist\n";
+		cin >> choice;
+		if (choice == "Hole digger")
+		{
+			death = holeDigger();
+			if (death.empty())
+			{
+				return victory;
+			}
+			else
+			{
+				return death;
+			}
+		}
+		if (choice == "Track remover")
+		{
+			death = trackRemover();
+			if (death.empty())
+			{
+				return victory;
+			}
+			else
+			{
+				return death;
+			}
+			if (choice == "Demolitionist")
+			{
+				death = Cdemolitionist();
+				if (death.empty())
+				{
+					return victory;
+				}
+				if (death == "Your skills at blowing things up that aren't you are so good, you are now being drafted into the army as a demolitionist specialist.")
+				{
+					death = Sdemolitionist();
+					return death;
+				}
+				else
+				{
+					return death;
+				}
+			}
+		}
+		return death;
+	}
+	else
+	{
+		return death;
+	}
+}
+string holeDigger()
+{
+	string victory;
+	string choice;
+	cout << "\nYou have been tasked as manually shoveling out the Canal.\n";
+	string death = constructionWorkerDeath();
+	if (death.empty())
+	{
+		death = holeDiggerDeath();
+		if (death.empty())
+		{
+			cout << "You get good enough at digging holes that you can advance. Here are your advancement options:\n";
+			cout << "Soil Analyst\nSteam Shovel Operator\nPickaxer\n";
+			cin >> choice;
+			if (choice == "Soil Analyst")
+			{
+				cout << "\nYou now analyze the soil to see if it will grow new produce and to see if the Canal will collapse.\n";
+				death = constructionWorkerDeath();
+				if (death.empty())
+				{
+					death = holeDiggerDeath();
+					if (death.empty())
+					{
+						return victory;
+					}
+					else
+					{
+						return death;
+					}
+				}
+				else
+				{
+					return death;
+				}
+			}
+			if (choice == "Steam Shovel Operator")
+			{
+				cout << "\nYou now utilize a steam shovel to make building the Canal faster.\n";
+				death = constructionWorkerDeath();
+				if (death.empty())
+				{
+					death = holeDiggerDeath();
+					if (death.empty())
+					{
+						return victory;
+					}
+					else
+					{
+						return death;
+					}
+				}
+				else
+				{
+					return death;
+				}
+			}
+			if (choice == "Pickaxer")
+			{
+				cout << "\nSince all of the demolitionists blew up, you get to manually dig through the mountains.\n";
+				death = constructionWorkerDeath();
+				if (death.empty())
+				{
+					death = holeDiggerDeath();
+					if (death.empty())
+					{
+						death = pickaxerDeath();
+						if (death.empty())
+						{
+							return victory;
+						}
+						else
+						{
+							return death;
+						}
+					}
+					else
+					{
+						return death;
+					}
+				}
+				else
+				{
+					return death;
+				}
+			}
+		}
+	}
+	else
+	{
+		return death;
+	}
+}
+string holeDiggerDeath()
+{
+	string death;
+	int chance = randPercent(20);
+	if (chance == 1)
+	{
+		death = "You made your hole too deep when the floods came. Your body was found the next week washed up on shore.";
+	}
+	return death;
+}
+string pickaxerDeath()
+{
+	string victory;
+	string death;
+	int chance = randPercent(15);
+	if (chance == 1)
+	{
+		death = "You found out what killed the demolitionists. Why? It is because you saw a green creature that hissed coming towards you, then you blew up";
+	}
+
+	return death;
+}
+string trackRemover()
+{
+	cout << "\nSince the area that the Panama Canal is going to built is riddled with minecart tracks and the such, you remove them.\n";
+	string death = constructionWorkerDeath();
+	string victory;
+	string choice;
+	if (death.empty())
+	{
+		death = trackRemoverDeath();
+		if (death.empty())
+		{
+			cout << "All the rails are removed and you can do another job. Here are your options:\n";
+			cout << "Materials Transport\nHole Structural Integrity Analyzer\n";
+			cin >> choice;
+			if (choice == "Materials Transport")
+			{
+				cout << "\nYou now make sure all materials are moved to the section of the Canal currently being worked on.\n";
+				death = constructionWorkerDeath();
+				if (death.empty())
+				{
+					death = trackRemoverDeath();
+					if (death.empty())
+					{
+						return victory;
+					}
+					else
+					{
+						return death;
+					}
+				}
+				else
+				{
+					return death;
+				}
+			}
+			if (choice == "Hole Structural Integrity Analyzer")
+			{
+				cout << "\nYou work with the Soil Analysts and make sure the Canal does collapse.\n";
+				death = constructionWorkerDeath();
+				if (death.empty())
+				{
+					death = trackRemoverDeath();
+					if (death.empty())
+					{
+						return victory;
+					}
+					else
+					{
+						return death;
+					}
+				}
+				else
+				{
+					return death;
+				}
+			}
+		}
+		else
+		{
+			return death;
+		}
+	}
+	else
+	{
+		return death;
+	}
+}
+string trackRemoverDeath()
+{
+	int chance = randPercent(10);
+	string death;
+	if (chance == 1)
+	{
+		death = "You fall into quicksand. Despite it's name, you die very slowly.";
+	}
+	return death;
+}
+string Cdemolitionist()
+{
+	string choice;
+	string war;
+	string victory;
+	cout << "\nYou have the honor of blasting holes through mouintains.\n";
+	string death = constructionWorkerDeath();
+	if (death.empty())
+	{
+		death = CdemolitionistDeath();
+		if (death.empty())
+		{
+			war = enlist();
+			if (war.empty())
+			{
+				cout << "You survived this long without dying, you get to choose a less dangerous career.\nHere are your choices:\n";
+				cout << "Mountain Tunneling\nExplosives Field Testing\n";
+				cin >> choice;
+				if (choice == "Mountain Tunneling")
+				{
+					cout << "\nYou choose a job of drilling through mountains instead of blowing them up.\n";
+					death = constructionWorkerDeath();
+					if (death.empty())
+					{
+						death = mountainTunnelerDeath();
+						if (death.empty())
+						{
+							death = "You survived the building of the Panama Canal. You and the other surviving demolitionists decide to throw a party. As a part of the fun, everyone is supposed to bring a bomb to blow up. Your friend calls and asks, \"What bomb are you bringing?\" After your answer, he says, \"Cool. I'm bringing the Kamikaze.\" Unknowingly, you respond \"Great!\"";
+							return death;
+						}
+						else
+						{
+							return death;
+						}
+					}
+				}
+				if (choice == "Explosives Field Testing")
+				{
+					death = "You survived the building of the Panama Canal. You and the other surviving demolitionists decide to throw a party. As a part of the fun, everyone is supposed to bring a bomb to blow up. You decided to take up some scientists on their request for you to try their new bomb: the Kamikaze. Let's just say, that's the last time you took up a scientist's offer... Or any other offer";
+					return death;
+				}
+			}
+			else
+			{
+				return war;
+			}
+		}
+		else
+		{
+			return death;
+		}
+	}
+	else
+	{
+		return death;
+	}
+}
+string CdemolitionistDeath()
+{
+	string death;
+	int chance = randPercent(5);
+	if (chance == 1)
+	{
+		death = "You realized one second too late that the fuse was way too short. You are now everywhere.";
+	}
+	return death;
+}
+string enlist()
+{
+	string enlisted;
+	int chance = randPercent(20);
+	if (chance == 1)
+	{
+		enlisted = "Your skills at blowing things up that aren't you are so good, you are now being drafted into the army as a demolitionist specialist.";
+	}
+	return enlisted;
+}
+string mountainTunnelerDeath()
+{
+	int choice = randPercent(5);
+	string death;
+	if (choice == 1)
+	{
+		death = "You suddenly feel shaking as the tunnel you were making caves in. You slowly starve and then end up dying.";
+	}
+	return death;
+}
+string firstChoice()
+{
+	string choice;
+	cout << "You heard that America is wanting to expand. You really want to help them and there is two oppertunities.\nHere are your choices:\n";
+	cout << "Construction Worker\nSoldier\n";
+	cin >> choice;
+	return choice;
+}
+string soldier()
+{
+	string victory;
+	string choice;
+	string death;
+	cout << "\nDuring training, you find out you can enlist in almost any field.\nHere are your options:\n";
+	cout << "Navy\nField Op\nSupport\n";
+	cin >> choice;
+	if (choice == "Navy")
+	{
+		death = navy();
+		if (death.empty())
+		{
+			return victory;
+		}
+		else
+		{
+			return death;
+		}
+	}
+	if (choice == "Field Op")
+	{
+		death = fieldOp();
+		if (death.empty())
+		{
+			return victory;
+		}
+		else
+		{
+			return death;
+		}
+	}
+	if (choice == "Support")
+	{
+		death = support();
+		if (death.empty())
+		{
+			return victory;
+		}
+		else
+		{
+			return death;
+		}
+	}
+}
+string navy()
+{
+	string victory;
+	string choice;
+	string death;
+	cout << "\nYour love for the sea decided that you would be in the navy. Unfortunately, you were stationed on the U.S.S. Maine in Havana Harbor.\n";
+	death = navyDeath();
+	if (death.empty())
+	{
+		cout << "You miraculously survived the ship sinking and sam back to the harbor. Now your at a crossroad. Do you want to:\n";
+		cout << "Stop fighting in the war\nFight for the U.S. still\nGo rouge\n";
+		cin >> choice;
+		if (choice == "Stop fighting in the war")
+		{
+			cout << "Paranoia sets in and you decode to go work on the Panama Canal.";
+			death == constructionWorker();
+		}
+		if (choice == "Fight for U.S. still")
+		{
+			cout << "Surviving the U.S.S. Maine is a sign to continue fighting. You can either be a Field Op or Support.\n";
+			cin >> choice;
+			if (choice == "Field Op")
+			{
+				death = fieldOp();
+				if (death.empty())
+				{
+					return victory;
+				}
+				else
+				{
+					return death;
+				}
+			}
+			if (choice == "Support")
+			{
+				death = support();
+				if (death.empty())
+				{
+					return victory;
+				}
+				else
+				{
+					return death;
+				}
+			}
+		}
+		if (choice == "Go rouge")
+		{
+			cout << "You are 100% sure the U.S. knew that the U.S.S. Maine was going to go down. You decide to fight a one man war against the U.S.";
+			death = rougeDeath();
+			if (death.empty())
+			{
+				cout << "You evaded capture and will live out the rest of your life on Cuba.";
+				return victory;
+			}
+			else
+			{
+				return death;
+			}
+		}
+	}
+}
+string navyDeath()
+{
+	string death;
+	int chance = randPercent(20);
+	if (chance == 1)
+	{
+		return death;
+	}
+	else
+	{
+		death = "You, along with almost every soldier on the U.S.S. Maine died.";
+		return death;
+	}
+}
+string rougeDeath()
+{
+	string death;
+	int chance1 = randPercent(4);
+	if (chance1 == 1)
+	{
+		return death;
+	}
+	else
+	{
+		cout << "You have been captured";
+		int chance2 = randPercent(2);
+		if (chance2 = 1)
+		{
+			death = "You have commited treason. You have been scentenced to death by firing squad.";
+			return death;
+		}
+		else
+		{
+			death = "You have commited treason. You have been scentenced to life in prison.";
+			return death;
+		}
+	}
+}
+string fieldOp()
+{
+	string death;
+	string choice;
+	string victory;
+	cout << "\nYou chose to a basic soldier.\n";
+	death = fieldOpDeath();
+	if (death.empty())
+	{
+		cout << "You are fighting the war from the ground.\nHere are you options:\n";
+		cout << "General\nInfantry\nDemolitionist\n";
+		cin >> choice;
+		if (choice == "General")
+		{
+			cout << "\nYour battle expertise advances you to the rank of General.\n";
+			death = fieldOpDeath();
+			if (death.empty())
+			{
+				int chance = randPercent(4);
+				if (chance == 1)
+				{
+					death = "In the heat of battle, you hear a gunshot as you fall to the floor. Apparently one of your snipers confused you for an enemy.\n";
+					return death;
+				}
+				else
+				{
+					cout << "\nThanks to your efforts, you help America win the war.";
+					return victory;
+				}
+			}
+			else
+			{
+				return death;
+			}
+		}
+		if (choice == "Infantry")
+		{
+			death = fieldOpDeath();
+			if (death.empty())
+			{
+				int chance = randPercent(6);
+				if (chance == 1)
+				{
+					death = "\nYou step on a landmine and got blown 1 mile high. Here you thought blowing up was the demolitionists' job.";
+					return death;
+				}
+				if (chance == 2)
+				{
+					death = "\nYou were cleaning you gun when it went off and killed you.";
+					return death;
+				}
+				if (chance == 3)
+				{
+					death = "\nIn battle, you see an arrow fall right next to you. During your confusion, another on lands in your chest.";
+					return death;
+				}
+				else
+				{
+					cout << "\nYou helped win the war.";
+					return victory;
+				}
+			}
+			else
+			{
+				return death;
+			}
+		}
+		if (choice == "Demolitoinist")
+		{
+			death = Sdemolitionist();
+			if (death.empty())
+			{
+				cout << "\nYou survuved.Do you want to help Panama or retire?\n";
+				cin >> choice;
+				if (choice == "Help Panama")
+				{
+					death == Cdemolitionist();
+					return death;
+				}
+				if (choice == "Retire")
+				{
+					cout << "\nYou live a long life.";
+					return victory;
+				}
+			}
+		}
+	}
+	else
+	{
+		return death;
+	}
+}
+string fieldOpDeath()
+{
+	string death;
+	int chance1 = randPercent(10);
+	if (chance1 == 1)
+	{
+		death = "You died.";
+		return death;
+	}
+	else
+	{
+		int chance2 = randPercent(15);
+		if (chance2 == 1)
+		{
+			death == "You are wounded and get sent home. One day you tell your childeren, \"I used to be in the army, then I took a bullet to the knee.\"";
+		}
+		else
+		{
+			return death;
+		}
+	}
+}
+string support()
+{
+	string victory;
+	string choice;
+	string death;
+	cout << "\nYou specialize in specialty weapons. Pick your weapon:\n";
+	cout << "Sniper\nArcher\n";
+	cin >> choice;
+	if (choice == "Archer")
+	{
+		cout << "\nYoun get captured by the Spanish Army for questioning. No one expects the Spanish Inquisition.\n";
+		int chance = randPercent(4);
+		if (chance == 1)
+		{
+			cout << "You manage to escape. Youn also return as a sniper.\n";
+			death = sniper();
+			if (death.empty())
+			{
+				cout << "With your help, America wins.\n";
+				return victory;
+			}
+			else
+			{
+				return death;
+			}
+		}
+		else
+		{
+			death = "The Spanish grow impatient with your lack of cooperation. You are K.I.A.";
+		}		
+	}
+	if (choice == "Sniper")
+	{
+		cout << "\nYou are now a sharshooter.\n";
+		death = sniper();
+		if (death.empty())
+			{
+				cout << "With your help, America wins.\n";
+				return victory;
+			}
+			else
+			{
+				return death;
+			}
+	}
+}
+string supportDeath()
+{
+	string death;
+	int chance = randPercent(20);
+	if (chance == 1)
+	{
+		death = "You hav been spotted. You have been shot.\n";
+		return death;
+	}
+	else
+	{
+		return death;
+	}
+}
+string Sdemolitionist()
+{
+	string death;
+	string victory;
+	cout << "\nYou are the trap layer and explosives technician.\n";
+	death = SdemolitionistDeath();
+	if (death.empty())
+	{
+		return victory;
+	}
+	else
+	{
+		return death;
+	}
+}
+string SdemolitionistDeath()
+{
+	string death;
+	int chance1 = randPercent(5);
+	if (chance1 == 1)
+	{
+		death = "\nYou stepped on a mine you just layed, you idiot.";
+		return death;
+	}
+	if (chance1 == 2)
+	{
+		death = "\nYou're pointing the bazooka the wrong way.";
+		return death;
+	}
+	if (chance1 == 3)
+	{
+		int chance2 = randPercent(10);
+		if (chance2 == 1)
+		{
+			cout << "\nYou got lucky that the gernade that you just pulled the pin out of is a dud.";
+			return death;
+		}
+		else
+		{
+			death = "\nThat gernade that you just the pin to is live. Why didn't you throw it.";
+			return death;
+		}
+	}
+	else
+	{
+		return death;
+	}
+}
+string sniper()
+{
+	cout << "You are one of the first snipers that America has.\n";
+	string death = supportDeath();
+	if (death.empty())
+	{
+		cout << "In the heat of battle, you see a general in your sights. You take the shot.\n";
+		int chance = randPercent(2);
+		if (chance == 1)
+		{
+			cout << "You go to confirm the kill. You realised that you shot your own general.\n";
+			death = "You get Court Martialed.";
+			return death;
+		}
+		if (chance == 2)
+		{
+			cout << "You go to confirm the kill. You killed the right person. With your help, America won the war.\n";
+			string victory;
+			return victory;
+		}
+	}
+}
